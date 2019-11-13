@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Character
+
+public class Player : Character
 {
-    public int EnemyHealth = 20;
-    public int EnemyDamage = 5;
+    public int PlayerHealth;
+    public int PlayerDamage;
 
     // Start is called before the first frame update
     void Start()
     {
-        setHealth(EnemyHealth);
-        setDamage(EnemyDamage);
+        setHealth(PlayerHealth);
+        setDamage(PlayerDamage);
     }
-    
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     protected override void Die()
     {
         Destroy(gameObject);

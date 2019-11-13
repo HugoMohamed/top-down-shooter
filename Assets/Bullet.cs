@@ -5,12 +5,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 50f;
+    private GameObject player;
+    private int playerDmg;
     
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerDmg = player.GetComponent<Player>().getDamage();
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = transform.up * speed;
@@ -21,8 +25,9 @@ public class Bullet : MonoBehaviour
         Enemy enemy = collision.GetComponent<Enemy>();
         if(enemy != null)
         {
-            enemy.
+            enemy.TakeDamage(playerDmg);
+            Debug.Log(enemy.getHealth());
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

@@ -18,14 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private float controllY;
     private float mouseY;
     private float inputY;
-    private float rot;
 
     // Start is called before the first frame update
     void Start()
     {
         isMoving = false;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rot = 0f;
     }
 
     private void FixedUpdate()
