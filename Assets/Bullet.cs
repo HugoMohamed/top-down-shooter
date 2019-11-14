@@ -18,15 +18,17 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = transform.up * speed;
+        // The bullet disappear after time if nothing has been touched
+        Destroy(gameObject, 2.0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // if an enemy is touched, inflict damage
         Enemy enemy = collision.GetComponent<Enemy>();
         if(enemy != null)
         {
             enemy.TakeDamage(playerDmg);
-            Debug.Log(enemy.getHealth());
         }
         Destroy(gameObject);
     }

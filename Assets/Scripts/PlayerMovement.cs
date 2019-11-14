@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         Move();       
     }
 
+    // Player movement
     private void Move()
     {
         h = Input.GetAxisRaw("Horizontal");
@@ -48,8 +49,20 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalMove = h * movementSpeed;
         verticalMove = v * movementSpeed;
+        
         Vector3 newMove = new Vector3(horizontalMove, verticalMove);
-
         transform.position += newMove * Time.deltaTime;
+  
+        
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+        Vector3 mousePos = transform.position;
+        if (v != 0)
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = transform.position.z;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, mousePos, movementSpeed * Time.deltaTime);
     }
 }
